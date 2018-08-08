@@ -47,7 +47,7 @@
 
 
     function initt(){
-      $.getJSON('http://localhost/respuestaexamenmki.php', function(data){
+      $.getJSON('http://192.168.137.237/respuestaexamenmki.php', function(data){
       for (var i = 0; i < data.length; i++) {                  
       $("form").append("<p> "+data[i].id +".- "+ data[i].pregunta+"</p>");
       $("form").append("<input type='radio' name='a"+data[i].id+"' id='a"+data[i].id+"' value='"+data[i].a+"'>"+data[i].a+"<br>");
@@ -59,7 +59,7 @@
 }
 
 function puntajito (){
-   $.getJSON('http://localhost/respuestaexamenmki.php', function(data){
+   $.getJSON('http://192.168.137.237/respuestaexamenmki.php', function(data){
    var ac=0;   
    var ric=[];
    var cir=[];
