@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+   <head>
+<meta charset="utf-8" />
+      <meta name="format-detection" content="telephone=no" />
+      <meta name="msapplication-tap-highlight" content="no" />
+      <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+      <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+      <script type="text/javascript" src="cordova.js"></script>
+      <script src="js/jquery-1.11.1.min.js"></script>
+      <script src="js/jquery.mobile-1.4.5.min.js"></script>
+      <link rel="stylesheet" href="css/estilo.css" />
+         <link rel="stylesheet" href="css/indexmkiv.css" />
+      <title>Test</title>
+   </head>
+   <body>
+  
+
+
+
+<body onload="initt();">
+      <div id="wrapper">
+         <div id="menu">
+            <h4>Menú</h4>
+            <ul>
+               <li  href="index.html" onclick="menusel(1)">Marvel</li>
+               <li  href="indexmkiii.html" onclick="menusel(2)">Generales</li>   
+            </ul>
+         </div>
+         <div id="content" class="">
+            <div id="menutop">
+               <img src="img/menu.png" width="40" onclick="elmenu();" />
+               Marvel Test
+            </div>
+            <div class="container">
+               <div id="pregunta"></div>
+      </div>  
+   </div>
+   </div>
+
+</body>
+
+<body>
+	<div data-role="page" id="principal">
+
+<script>
+
+
+    function initt(){
+      $.getJSON('http://localhost/respuestaexamenmki.php', function(data){
+      for (var i = 0; i < data.length; i++) {                  
+      $("form").append("<p> "+data[i].id +".- "+ data[i].pregunta+"</p>");
+      $("form").append("<input type='radio' name='a"+data[i].id+"' id='a"+data[i].id+"' value='"+data[i].a+"'>"+data[i].a+"<br>");
+      $("form").append("<input type='radio' name='a"+data[i].id+"' id='b"+data[i].id+"' value='"+data[i].b+"'>"+data[i].b+"<br>");
+      $("form").append("<input type='radio' name='a"+data[i].id+"' id='c"+data[i].id+"' value='"+data[i].c+"'>"+data[i].c+"<br>");  
+}
+   });
+
+}
+
+function puntajito (){
+   $.getJSON('http://localhost/respuestaexamenmki.php', function(data){
+   var ac=0;   
+   var ric=[];
+   var cir=[];
+for (var i = 0; i < data.length; i++) {
+if (data[i].respcorrecta == $("input[name='a" + data[i].id + "']:checked").val()){
+   ac = ac+2;  
+
+   cir[i] = data[i].pregunta; 
+
+   }else{
+      ric[i] = data[i].pregunta;
+   }
+}
+alert("Puntuación final: "+ac+" Fallaste en: "+ric);
+});
+
+}
+
+ </script>
+
+
+
+		<div data-role="header">
+		</div>
+	
+		<div role="main" class="ui-content" id="device">
+
+		<form action="">		
+			</form>
+						
+		</div>
+			
+		
+			<div data-role="navbar" data-iconpos="bottom">
+				<ul>
+	 <li><br><br><center><a type="button" id="sig1" onclick="puntajito()" data-icon="star"
+                value="Resp" >Aceptar</a></li></center>
+				</ul>
+
+        	</div>
+		</div>		
+	</div>
+
+            </div>
+         </div>
+         <div class="lopen"></div>
+   
+
+      <script type="text/javascript" src="js/zepto.min.js"></script>
+      <script type="text/javascript" src="js/fastclick.js"></script>
+      <script type="text/javascript" src="js/elmenu.js"></script>
+   </body>
+</html>
+
